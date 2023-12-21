@@ -14,7 +14,9 @@ set.incsearch = true
 
 set.termguicolors = true
 
-set.scrolloff = 5
+set.wrap = false
+
+set.scrolloff = 999
 
 set.updatetime = 50
 
