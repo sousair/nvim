@@ -37,4 +37,25 @@ return require('packer').startup(function(use)
     }
   }
   use 'github/copilot.vim'
+  use {
+        'adalessa/laravel.nvim',
+        requires = {
+            'nvim-telescope/telescope.nvim',
+            'tpope/vim-dotenv',
+            'MunifTanjim/nui.nvim',
+            'nvimtools/none-ls.nvim',
+        },
+        cmd = { 'Sail', 'Artisan', 'Composer', 'Npm', 'Yarn', 'Laravel' },
+        -- keys = {
+        --     { '<leader>la', ':Laravel artisan<CR>' },
+        --     { '<leader>lr', ':Laravel routes<CR>' },
+        --     { '<leader>lm', ':Laravel related<CR>' },
+        -- },
+        -- event = { 'VeryLazy' },
+        config = function()
+            -- Your plugin-specific configuration can go here
+            -- For example:
+            -- vim.g.laravel_config_variable = 'value'
+        end,
+    }
 end)

@@ -99,6 +99,15 @@ _G.packer_plugins = {
     path = "/home/iago/.local/share/nvim/site/pack/packer/start/kanagawa.nvim",
     url = "https://github.com/rebelot/kanagawa.nvim"
   },
+  ["laravel.nvim"] = {
+    commands = { "Sail", "Artisan", "Composer", "Npm", "Yarn", "Laravel" },
+    config = { "\27LJ\2\n\v\0\0\1\0\0\0\1K\0\1\0\0" },
+    loaded = false,
+    needs_bufread = false,
+    only_cond = false,
+    path = "/home/iago/.local/share/nvim/site/pack/packer/opt/laravel.nvim",
+    url = "https://github.com/adalessa/laravel.nvim"
+  },
   ["lsp-zero.nvim"] = {
     loaded = true,
     path = "/home/iago/.local/share/nvim/site/pack/packer/start/lsp-zero.nvim",
@@ -113,6 +122,16 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/iago/.local/share/nvim/site/pack/packer/start/mason.nvim",
     url = "https://github.com/williamboman/mason.nvim"
+  },
+  ["none-ls.nvim"] = {
+    loaded = true,
+    path = "/home/iago/.local/share/nvim/site/pack/packer/start/none-ls.nvim",
+    url = "https://github.com/nvimtools/none-ls.nvim"
+  },
+  ["nui.nvim"] = {
+    loaded = true,
+    path = "/home/iago/.local/share/nvim/site/pack/packer/start/nui.nvim",
+    url = "https://github.com/MunifTanjim/nui.nvim"
   },
   ["nvim-cmp"] = {
     loaded = true,
@@ -153,10 +172,62 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/iago/.local/share/nvim/site/pack/packer/start/vim-be-good",
     url = "https://github.com/ThePrimeagen/vim-be-good"
+  },
+  ["vim-dotenv"] = {
+    loaded = true,
+    path = "/home/iago/.local/share/nvim/site/pack/packer/start/vim-dotenv",
+    url = "https://github.com/tpope/vim-dotenv"
   }
 }
 
 time([[Defining packer_plugins]], false)
+
+-- Command lazy-loads
+time([[Defining lazy-load commands]], true)
+pcall(vim.api.nvim_create_user_command, 'Sail', function(cmdargs)
+          require('packer.load')({'laravel.nvim'}, { cmd = 'Sail', l1 = cmdargs.line1, l2 = cmdargs.line2, bang = cmdargs.bang, args = cmdargs.args, mods = cmdargs.mods }, _G.packer_plugins)
+        end,
+        {nargs = '*', range = true, bang = true, complete = function()
+          require('packer.load')({'laravel.nvim'}, {}, _G.packer_plugins)
+          return vim.fn.getcompletion('Sail ', 'cmdline')
+      end})
+pcall(vim.api.nvim_create_user_command, 'Artisan', function(cmdargs)
+          require('packer.load')({'laravel.nvim'}, { cmd = 'Artisan', l1 = cmdargs.line1, l2 = cmdargs.line2, bang = cmdargs.bang, args = cmdargs.args, mods = cmdargs.mods }, _G.packer_plugins)
+        end,
+        {nargs = '*', range = true, bang = true, complete = function()
+          require('packer.load')({'laravel.nvim'}, {}, _G.packer_plugins)
+          return vim.fn.getcompletion('Artisan ', 'cmdline')
+      end})
+pcall(vim.api.nvim_create_user_command, 'Composer', function(cmdargs)
+          require('packer.load')({'laravel.nvim'}, { cmd = 'Composer', l1 = cmdargs.line1, l2 = cmdargs.line2, bang = cmdargs.bang, args = cmdargs.args, mods = cmdargs.mods }, _G.packer_plugins)
+        end,
+        {nargs = '*', range = true, bang = true, complete = function()
+          require('packer.load')({'laravel.nvim'}, {}, _G.packer_plugins)
+          return vim.fn.getcompletion('Composer ', 'cmdline')
+      end})
+pcall(vim.api.nvim_create_user_command, 'Npm', function(cmdargs)
+          require('packer.load')({'laravel.nvim'}, { cmd = 'Npm', l1 = cmdargs.line1, l2 = cmdargs.line2, bang = cmdargs.bang, args = cmdargs.args, mods = cmdargs.mods }, _G.packer_plugins)
+        end,
+        {nargs = '*', range = true, bang = true, complete = function()
+          require('packer.load')({'laravel.nvim'}, {}, _G.packer_plugins)
+          return vim.fn.getcompletion('Npm ', 'cmdline')
+      end})
+pcall(vim.api.nvim_create_user_command, 'Yarn', function(cmdargs)
+          require('packer.load')({'laravel.nvim'}, { cmd = 'Yarn', l1 = cmdargs.line1, l2 = cmdargs.line2, bang = cmdargs.bang, args = cmdargs.args, mods = cmdargs.mods }, _G.packer_plugins)
+        end,
+        {nargs = '*', range = true, bang = true, complete = function()
+          require('packer.load')({'laravel.nvim'}, {}, _G.packer_plugins)
+          return vim.fn.getcompletion('Yarn ', 'cmdline')
+      end})
+pcall(vim.api.nvim_create_user_command, 'Laravel', function(cmdargs)
+          require('packer.load')({'laravel.nvim'}, { cmd = 'Laravel', l1 = cmdargs.line1, l2 = cmdargs.line2, bang = cmdargs.bang, args = cmdargs.args, mods = cmdargs.mods }, _G.packer_plugins)
+        end,
+        {nargs = '*', range = true, bang = true, complete = function()
+          require('packer.load')({'laravel.nvim'}, {}, _G.packer_plugins)
+          return vim.fn.getcompletion('Laravel ', 'cmdline')
+      end})
+time([[Defining lazy-load commands]], false)
+
 
 _G._packer.inside_compile = false
 if _G._packer.needs_bufread == true then
