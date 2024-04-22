@@ -209,6 +209,13 @@ time([[Defining packer_plugins]], false)
 
 -- Command lazy-loads
 time([[Defining lazy-load commands]], true)
+pcall(vim.api.nvim_create_user_command, 'Yarn', function(cmdargs)
+          require('packer.load')({'laravel.nvim'}, { cmd = 'Yarn', l1 = cmdargs.line1, l2 = cmdargs.line2, bang = cmdargs.bang, args = cmdargs.args, mods = cmdargs.mods }, _G.packer_plugins)
+        end,
+        {nargs = '*', range = true, bang = true, complete = function()
+          require('packer.load')({'laravel.nvim'}, {}, _G.packer_plugins)
+          return vim.fn.getcompletion('Yarn ', 'cmdline')
+      end})
 pcall(vim.api.nvim_create_user_command, 'Laravel', function(cmdargs)
           require('packer.load')({'laravel.nvim'}, { cmd = 'Laravel', l1 = cmdargs.line1, l2 = cmdargs.line2, bang = cmdargs.bang, args = cmdargs.args, mods = cmdargs.mods }, _G.packer_plugins)
         end,
@@ -243,13 +250,6 @@ pcall(vim.api.nvim_create_user_command, 'Npm', function(cmdargs)
         {nargs = '*', range = true, bang = true, complete = function()
           require('packer.load')({'laravel.nvim'}, {}, _G.packer_plugins)
           return vim.fn.getcompletion('Npm ', 'cmdline')
-      end})
-pcall(vim.api.nvim_create_user_command, 'Yarn', function(cmdargs)
-          require('packer.load')({'laravel.nvim'}, { cmd = 'Yarn', l1 = cmdargs.line1, l2 = cmdargs.line2, bang = cmdargs.bang, args = cmdargs.args, mods = cmdargs.mods }, _G.packer_plugins)
-        end,
-        {nargs = '*', range = true, bang = true, complete = function()
-          require('packer.load')({'laravel.nvim'}, {}, _G.packer_plugins)
-          return vim.fn.getcompletion('Yarn ', 'cmdline')
       end})
 time([[Defining lazy-load commands]], false)
 
