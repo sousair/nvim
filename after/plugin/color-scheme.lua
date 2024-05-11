@@ -31,7 +31,7 @@ require('kanagawa').setup({
 })
 
 function SetColorScheme(color)
-	color = color or "kanagawa-wave"
+	color = color or "kanagawa-dragon"
 	vim.cmd.colorscheme(color)
 
   -- Set transparency
