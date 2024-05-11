@@ -17,7 +17,7 @@ require('kanagawa').setup({
       -- set their background accordingly if you wish to keep them dark and borderless
       LazyNormal = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim },
       MasonNormal = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim },
-    
+
       -- Telescope
       TelescopeTitle = { fg = theme.ui.special, bold = true },
       TelescopePromptNormal = { bg = theme.ui.bg_p1 },
@@ -31,12 +31,12 @@ require('kanagawa').setup({
 })
 
 function SetColorScheme(color)
-	color = color or "kanagawa-dragon"
-	vim.cmd.colorscheme(color)
+  color = color or "kanagawa-dragon"
+  vim.cmd.colorscheme(color)
 
   -- Set transparency
-  -- vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
-  -- vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+  vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+  vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
 end
 
 SetColorScheme()

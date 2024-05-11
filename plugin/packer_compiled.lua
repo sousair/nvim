@@ -193,6 +193,11 @@ _G.packer_plugins = {
     path = "/home/iago/.local/share/nvim/site/pack/packer/start/telescope.nvim",
     url = "https://github.com/nvim-telescope/telescope.nvim"
   },
+  ["todo-comments.nvim"] = {
+    loaded = true,
+    path = "/home/iago/.local/share/nvim/site/pack/packer/start/todo-comments.nvim",
+    url = "https://github.com/folke/todo-comments.nvim"
+  },
   ["vim-be-good"] = {
     loaded = true,
     path = "/home/iago/.local/share/nvim/site/pack/packer/start/vim-be-good",
@@ -209,6 +214,13 @@ time([[Defining packer_plugins]], false)
 
 -- Command lazy-loads
 time([[Defining lazy-load commands]], true)
+pcall(vim.api.nvim_create_user_command, 'Composer', function(cmdargs)
+          require('packer.load')({'laravel.nvim'}, { cmd = 'Composer', l1 = cmdargs.line1, l2 = cmdargs.line2, bang = cmdargs.bang, args = cmdargs.args, mods = cmdargs.mods }, _G.packer_plugins)
+        end,
+        {nargs = '*', range = true, bang = true, complete = function()
+          require('packer.load')({'laravel.nvim'}, {}, _G.packer_plugins)
+          return vim.fn.getcompletion('Composer ', 'cmdline')
+      end})
 pcall(vim.api.nvim_create_user_command, 'Npm', function(cmdargs)
           require('packer.load')({'laravel.nvim'}, { cmd = 'Npm', l1 = cmdargs.line1, l2 = cmdargs.line2, bang = cmdargs.bang, args = cmdargs.args, mods = cmdargs.mods }, _G.packer_plugins)
         end,
@@ -243,13 +255,6 @@ pcall(vim.api.nvim_create_user_command, 'Artisan', function(cmdargs)
         {nargs = '*', range = true, bang = true, complete = function()
           require('packer.load')({'laravel.nvim'}, {}, _G.packer_plugins)
           return vim.fn.getcompletion('Artisan ', 'cmdline')
-      end})
-pcall(vim.api.nvim_create_user_command, 'Composer', function(cmdargs)
-          require('packer.load')({'laravel.nvim'}, { cmd = 'Composer', l1 = cmdargs.line1, l2 = cmdargs.line2, bang = cmdargs.bang, args = cmdargs.args, mods = cmdargs.mods }, _G.packer_plugins)
-        end,
-        {nargs = '*', range = true, bang = true, complete = function()
-          require('packer.load')({'laravel.nvim'}, {}, _G.packer_plugins)
-          return vim.fn.getcompletion('Composer ', 'cmdline')
       end})
 time([[Defining lazy-load commands]], false)
 

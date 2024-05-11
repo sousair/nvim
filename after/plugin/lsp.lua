@@ -1,6 +1,23 @@
 local lsp_zero = require('lsp-zero')
 local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
+require('mason').setup({})
+require('mason-lspconfig').setup({
+  ensure_installed = {
+    'tsserver',
+    'eslint',
+    'gopls',
+
+  },
+  handlers = {
+    lsp_zero.default_setup,
+    lua_ls = function()
+      local lua_opts = lsp_zero.nvim_lua_ls()
+      require('lspconfig').lua_ls.setup(lua_opts)
+    end,
+  }
+})
+
 lsp_zero.on_attach(function(client, bufnr)
   local opts = { buffer = bufnr, remap = false }
 
@@ -15,7 +32,7 @@ lsp_zero.on_attach(function(client, bufnr)
   vim.keymap.set("n", "<leader>vrn", function() vim.lsp.buf.rename() end, opts)
   vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
 
-  -- AutoFormatting
+  -- Auto format on save
   vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
   vim.api.nvim_create_autocmd("BufWritePre", {
     group = augroup,
@@ -25,15 +42,3 @@ lsp_zero.on_attach(function(client, bufnr)
     end
   })
 end)
-
-require('mason').setup({})
-require('mason-lspconfig').setup({
-  ensure_installed = { 'tsserver', 'rust_analyzer' },
-  handlers = {
-    lsp_zero.default_setup,
-    lua_ls = function()
-      local lua_opts = lsp_zero.nvim_lua_ls()
-      require('lspconfig').lua_ls.setup(lua_opts)
-    end,
-  }
-})
