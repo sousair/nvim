@@ -23,4 +23,4 @@ set.updatetime = 50
 set.colorcolumn = "100"
 
 set.spell = true
-set.spelllang = { "en_us", "pt_br" }
+set.spelllang = { "en_us" }
